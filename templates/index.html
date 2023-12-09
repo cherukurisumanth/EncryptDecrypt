@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+    <title>Encrypt and Decrypt</title>
+</head>
+<body>
+    <div><img src="{{ url_for('static', filename = 'images/logo.png' )}}" alt="encrypt decrypt logo"></div>
+    <div id="encrypt_file">
+        <form action="{{ url_for('encryption.encrypt') }}" method="post" enctype="multipart/form-data">
+            <label for="password">Password:</label>
+            <input type="password" name="encyption_key" id="password"><br>
+            <input type="file" name="input_file" accept=".txt, .pdf, .doc, .docx"><br>
+            <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" />
+            <button type="button" id="encrypt" onclick="form.submit()">Encrypt</button>
+        </form>
+    </div>
+    <div id="decrypt_file">
+        <form action="{{ url_for('decryption.decrypt') }}" method="post" enctype="multipart/form-data">
+            <label for="password">Password:</label>
+            <input type="password" name="encyption_key" id="password"><br>
+            <input type="file" name="input_file" accept=".txt, .pdf, .doc, .docx"><br>
+            <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" />
+            <button type="button" id="decrypt" onclick="form.submit()">Decrypt</button>
+        </form>
+    </div>
+    
+</body>
+</html>

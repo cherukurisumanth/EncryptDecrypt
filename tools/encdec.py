@@ -14,10 +14,10 @@ def generate_enckey(password:str, salt:bytes) -> bytes:
     key = base64.urlsafe_b64encode(kdf.derive(password))
     return key
 
-def encrypt_encfile(key:bytes, input) -> bytes:
+def encrypt_encfile(key:bytes, input_file) -> bytes:
     fernet = Fernet(key)
-    return fernet.encrypt(input)
+    return fernet.encrypt(input_file)
 
-def decrypt_encfile(key:bytes, input) -> bytes:
+def decrypt_encfile(key:bytes, input_file) -> bytes:
     fernet = Fernet(key)
-    return fernet.decrypt(input)
+    return fernet.decrypt(input_file)

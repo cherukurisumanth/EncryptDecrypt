@@ -23,9 +23,9 @@ def encrypt() -> Response:
     password = request.form.get('encyption_key')
     filename = file.filename
     mime = file.content_type
-    input = file.read()
+    input_file = file.read()
     key = generate_enckey(password=password,salt=constants.salt)
-    output = encrypt_encfile(key=key, input=input)
+    output = encrypt_encfile(key=key, input_file=input_file)
     response = Response(response=output, content_type=mime)
     response.headers["Content-Disposition"] = f"attachment; filename={filename}"
     return response
@@ -36,9 +36,9 @@ def decrypt() -> Response:
     password = request.form.get('encyption_key')
     filename = file.filename
     mime = file.content_type
-    input = file.read()
+    input_file = file.read()
     key = generate_enckey(password=password,salt=constants.salt)
-    output = decrypt_encfile(key=key,input=input)
+    output = decrypt_encfile(key=key,input_file=input_file)
     response = Response(response=output, content_type=mime)
     response.headers["Content-Disposition"] = f"attachment; filename={filename}"
     return response

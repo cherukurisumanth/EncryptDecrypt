@@ -1,7 +1,7 @@
 ARG REGISTRY="docker.io"
 ARG REPOSITORY="library"
 ARG IAMGE="alpine"
-ARG TAG="latest"
+ARG TAG="3.18.5"
 
 FROM ${REGISTRY}/${REPOSITORY}/${IAMGE}:${TAG}
 
